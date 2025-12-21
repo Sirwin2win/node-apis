@@ -4,6 +4,7 @@ const connectDB = require('./config/db')
 // const Post1 = require('./models/postModel')
 const postRouter = require('./routes/postRoutes')
 const ProdctRouter = require('./routes/productRoute')
+const UserRouter = require('./routes/userRoute')
 
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.json())// helps us to receive json data into this app
 app.use(express.urlencoded({extended:false}))
 app.use('/',postRouter)
 app.use('/',ProdctRouter)
+app.use('/api/users', UserRouter)
 app.get('/',(req,res)=>{
     res.send("Hello World")
 })

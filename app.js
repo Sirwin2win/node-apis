@@ -5,6 +5,7 @@ const connectDB = require('./config/db')
 const postRouter = require('./routes/postRoutes')
 const ProdctRouter = require('./routes/productRoute')
 const UserRouter = require('./routes/userRoute')
+const cors = require('cors')
 
 
 const app = express()
@@ -15,6 +16,7 @@ connectDB()
 
 
 // middlewares
+app.use(cors())
 app.use(express.json())// helps us to receive json data into this app
 app.use(express.urlencoded({extended:false}))
 app.use('/',postRouter)

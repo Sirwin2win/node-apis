@@ -31,7 +31,7 @@ exports.getProducts = async(req,res)=>{
         if(!products){
             res.status(404).json({mesage:'Products not found'})
         }
-        res.status(200).json({products})
+        res.send(products)
     } catch (error) {
         res.send(error.message)
     }

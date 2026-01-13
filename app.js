@@ -16,7 +16,8 @@ connectDB()
 
 
 // middlewares
-app.use(cors())
+app.use(cors()) // This allows request from a different origin
+app.use(express.static('upload'))
 app.use(express.json())// helps us to receive json data into this app
 app.use(express.urlencoded({extended:false}))
 app.use('/',postRouter)

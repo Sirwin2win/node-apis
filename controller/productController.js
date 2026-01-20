@@ -45,7 +45,7 @@ exports.getSingle = async(req,res)=>{
        if(!product){
         res.status(404).json({mesage:'Product not found'})
         }
-        res.status(200).json({product})
+        res.send(product)
     } catch (error) {
         res.send(error.message)
     }
@@ -84,7 +84,7 @@ exports.updateProduct = async(req,res)=>{
         if(!newProduct){
             res.status(400).json({message:'We could not create at this time'})
         }
-        res.status(200).json({newProduct})
+        res.send(newProduct)
     } catch (error) {
         res.send(error.message)
     }

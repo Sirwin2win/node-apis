@@ -21,6 +21,7 @@ exports.createOrder = async(req,res)=>{
             productId:item.product_id,
             productTitle:item.product_title,
             productQuantity:item.product_quantity,
+            productPrice:item.product_price
         })
     }
 
@@ -31,7 +32,7 @@ exports.createOrder = async(req,res)=>{
         }else{
             const newOrderItems = await orderItems.save()
             if(newOrderItems){
-                res.send(newOrderItems)
+                res.send(newOrderItems.orderRef)
             }
         }
     } catch (error) {

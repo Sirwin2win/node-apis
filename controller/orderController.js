@@ -19,9 +19,9 @@ exports.createOrder = async(req,res)=>{
         if(!order){
             return res.status(401).json({msg:"Sorry we could not create order"})
         }
-        res.send(newOrder)
+        res.send(orderRef)
     } catch (error) {
-        
+        res.send(error.message)
     }
 
 }

@@ -45,3 +45,21 @@ try {
     res.send(error.message)
 }
 }
+
+exports.verify = async(req,res)=>{
+    const {transaction_id} = req.params;
+
+    try {
+        const response = await axios.get(`https://api.flutterwave.com/v3/transactions/${transaction_id}/verify`,{
+            headers:{
+                Authorization:`Bearer ${process.env.FLW_SECRET_KEY}`
+            }
+        })
+        const data = response.data.data;
+        if(data.status==='successful'){
+            console.log('Update the database')
+        }
+    } catch (error) {
+        
+    }
+}

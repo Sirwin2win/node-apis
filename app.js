@@ -6,6 +6,7 @@ const postRouter = require('./routes/postRoutes')
 const ProdctRouter = require('./routes/productRoute')
 const UserRouter = require('./routes/userRoute')
 const OrderRouter = require('./routes/orderRoute')
+const PaymentRouter = require('./routes/paymentRoute')
 const cors = require('cors')
 
 
@@ -24,6 +25,7 @@ app.use(express.urlencoded({extended:false}))
 app.use('/',postRouter)
 app.use('/',ProdctRouter)
 app.use('/',OrderRouter)
+app.use('/',PaymentRouter)
 app.use('/api/users', UserRouter)
 app.get('/',(req,res)=>{
     res.send("Hello World")

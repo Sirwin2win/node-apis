@@ -22,10 +22,10 @@ app.use(cors()) // This allows request from a different origin
 app.use(express.static('upload'))
 app.use(express.json())// helps us to receive json data into this app
 app.use(express.urlencoded({extended:false}))
+app.use('/',PaymentRouter)
 app.use('/',postRouter)
 app.use('/',ProdctRouter)
 app.use('/',OrderRouter)
-app.use('/',PaymentRouter)
 app.use('/api/users', UserRouter)
 app.get('/',(req,res)=>{
     res.send("Hello World")

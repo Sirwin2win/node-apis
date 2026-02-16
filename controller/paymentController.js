@@ -20,7 +20,7 @@ try {
    if(!pay){
     return res.send("Sorry error occured")
    }
-   const flut = await axios.post('htts://api.flutterwave.com/v3/payments',{
+   const flut = await axios.post('https://api.flutterwave.com/v3/payments',{
     tx_ref,
     amount:Number(amount),
     currency:"NGN",

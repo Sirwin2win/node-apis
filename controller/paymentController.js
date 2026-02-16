@@ -20,7 +20,7 @@ try {
    if(!pay){
     return res.send("Sorry error occured")
    }
-   const flut = await axios.post('https://api.flutterwave.com/v3/payments',{
+   const flut = await axios.post("https://api.flutterwave.com/v3/payments",{
     tx_ref,
     amount:Number(amount),
     currency:"NGN",
@@ -32,11 +32,14 @@ try {
         title:"Payments of goods from Sirwin",
         description:"This is for payment of the goods that you added to your cart"
     },
-    Headers:{
+    },
+    {
+        headers:{
         Authorization:`Bearer ${process.env.FLW_SECRET_KEY}`,
         "Content-Type":"application/json",
     }
-   })
+    }
+   )
    // return payment link
    return res.json({
    link: flut.data.data.link

@@ -38,9 +38,9 @@ try {
     }
    })
    // return payment link
-   return res.send(
-    flut.data.data.link
-   )
+   return res.json({
+   link: flut.data.data.link
+})
 } catch (error) {
     res.send(error.message)
 }

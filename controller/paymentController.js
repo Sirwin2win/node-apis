@@ -59,10 +59,29 @@ exports.verify = async(req,res)=>{
             }
         })
         const data = response.data.data;
-        if(data.status==='successful'){
-            console.log('Update the database')
+        // Fetch payment from the database based on the data.tx_ref
+        const payment = await Payment.findOne({tx_ref:data.tx_ref})
+        // Check if the payment is valid
+        if(!payment){
+            return res.status(404).json({msg:"Payment not found in our record"})
+        }
+        // security check
+        if(data.status==='successful' && data.amount >= payment.amount && data.currency === payment.currency){
+            // Update database
+            const updatedPayment = await Payment.findOneAndUpdate(
+                {tx_ref:data.tx_ref},
+                {
+                    $set:{status:'success'},
+                    
+                },
+                {new:true}
+
+            );
+            return res.status(201).json({msg:"Payment verified and secured",result:updatedPayment})
+        }else{
+            res.send("Payment validation failed")
         }
     } catch (error) {
-        
+        res.send(error.message)
     }
 }

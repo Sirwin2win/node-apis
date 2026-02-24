@@ -1,5 +1,6 @@
 const Payment = require('../models/paymentModel')
 const axios = require('axios')
+const Order = require('../models/orderModel')
 
 
 exports.pay = async(req,res)=>{
@@ -65,6 +66,9 @@ exports.verify = async(req,res)=>{
         if(!payment){
             return res.status(404).json({msg:"Payment not found in our record"})
         }
+        // Using payment info to get order details
+        // const order = await Order.findOne({orderRef:payment.orderRef})
+
         // security check
         if(data.status==='successful' && data.amount >= payment.amount && data.currency === payment.currency){
             // Update database
@@ -77,6 +81,13 @@ exports.verify = async(req,res)=>{
                 {new:true}
 
             );
+            const updatedOrder = await Order.findOneAndUpdate({orderRef:payment.orderRef},
+                {
+                    $set:{status:'success'},
+                    
+                },
+                {new:true}
+            )
             return res.status(201).json({msg:"Payment verified and secured",result:updatedPayment})
         }else{
             res.send("Payment validation failed")

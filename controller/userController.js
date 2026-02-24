@@ -25,7 +25,7 @@ exports.register = async(req,res)=>{
         const newUser = await user.save()
         // confirm user creation
         if(newUser){
-            res.status(201).json({newUser})
+            res.status(201).json({newUser,msg:"User created!"})
         }else{
             res.send("Could not create user at the moment")
         }

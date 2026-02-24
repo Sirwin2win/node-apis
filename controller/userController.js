@@ -19,7 +19,7 @@ exports.register = async(req,res)=>{
         // check if user exists
         const userExist = await User.findOne({email})
         if(userExist){
-          return  res.send("User with the email already exists")
+          return  res.status(401).json({msg:"User with the email already exists"})
         }
         // save user on the db
         const newUser = await user.save()

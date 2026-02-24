@@ -6,6 +6,6 @@ const router = express.Router()
 
 
 router.post('/api/payments',pay)
-router.post('/api/payments/:transaction_id',verify)
+router.get('/api/payments/:transaction_id',verify)
 
 module.exports = router
